@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	html, body {
+		width: 100%;
+		height: 100%;
+		position: relative;
+	}
+	section {
+		margin: auto;
+		width: 1024px;
+		height: 576px;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		border: solid 1px #000;
+	}
+	.image {
+		height: 576px;
+		width: 576px;
+		background-size: cover;
+	}
+	.comment {
+		left: 576px;
+		width: 384px;
+		position: absolute;
+		top: 0;
+		padding: 32px;
+	}
+	.icon {
+		width: 64px;
+		height: 64px;
+		background-color: #ccc;
+		background-size: cover;
+		border-radius: 50%;
+	}
+	.comment header::after {
+		content: "";
+		clear: both;
+		display: block;
+	}
+	.comment header * {
+		float: left;
+	}
+	.comment header h3, .comment header p {
+		margin-left: 16px;
+		width: 256px;
+	}
+	hr {
+		margin: 16px 0;
+		border: none;
+		border-top: solid 1px #ccc;
+	}
+	.usercomment {
+		height: 320px;
+	}
+	.comment footer {
+		font-size: 0.8em;
+	}
+	.comment .commentinput input {
+		height: 32px;
+		border: none;
+	}
+	.comment .commentinput input:focus {
+		outline: none;
+	}
+	.usercomment span {
+		font-weight: bold;
+		/*font-size: 0.8rem;*/
+	}
+	a {
+		text-decoration: none;
+	}
+	</style>
+</head>
+<body>
+	<section>
+		<!-- 画像のパス -->
+		<div class="image" style="background-image:url(/static/image/takase.png);"></div>
+		<div class="comment">
+			<header>
+				<div class="icon" style="background-image:url(/static/image/ICON.jpg);"></div>
+				<h3>Kawara Yuki</h3>
+				<p>喜代美山荘 花樹海</p>
+			</header>
+			<hr>
+			<div class="usercomment">
+				<p>
+					<span>Kawara Yuki</span> <!--なんか適当に締めて🍺🙅‍♀️と言われたお方😂😂😂-->
+					{{ hashtag }}
+				</p>
+			</div>
+			<hr>
+			<footer>
+				<a href="./instagram.html?">「いいね！」</a>した人はまだいません。
+			</footer>
+			<hr>
+			<div class="commentinput">
+				<input type="" name="" placeholder="コメントを追加...">
+			</div>
+		</div>
+	</section>
+</body>
+</html>

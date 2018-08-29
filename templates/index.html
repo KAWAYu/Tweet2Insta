@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="form">
+  <form action="/post" method="post" class="form-inline">
+    <div id="tweet">
+        <label for="tweet-content">ツイート内容</label>
+        <div class="form-group">
+          <textarea id="tweet-content" name="tweet-content" maxlength="140" placeholder="ここはツイッターではありません。" rows=4></textarea>
+        </div>
+        <div class="form-group">
+          <input id="imagefile" type="file" name="imagefile" id="imagefile">
+        </div>
+        <button id="convert-button" type="submit" class="btn btn-primary" name="convert-button" formmethod="post">変換</button>
+    </div>
+  </form>
+</div>
+{% endblock %}
