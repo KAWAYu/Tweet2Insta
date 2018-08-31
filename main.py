@@ -1,7 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import argparse
-
 from flask import Flask, render_template, request, redirect, url_for
 import numpy as np
 from io import open
@@ -10,6 +9,7 @@ import MeCab
 import json
 import random
 
+from emoji_lib import insertemoji
 
 app = Flask(__name__)
 
@@ -36,7 +36,7 @@ def post():
     trans_dict = ja2en("data/top_hash.tsv")
     title = "Tweet2InstagramConverter"
     if request.method == 'POST':
-        emojistring = inseart_emoji(request.form['tweet-content'])
+        emojistring = insertemoji.insert_emoji(request.form['tweet-content'], 'data/emoji.txt')
         return render_template('instagram.html',
                 hashtag=emojistring + tweet2insta(request.form['tweet-content'], e_list, hashes, trans_dict),
                 title=title, message='hashtag does not exist')
@@ -111,31 +111,6 @@ def tweet2insta(content, entities, hashtags, translate):
 
     hashtag = ['#%s' % s for s in hashtag] + _toriaezu
     return ' '.join(hashtag)
-
-
-def inseart_emoji(sentences):
-    f = open('data/emoji.txt')
-    dic = json.loads(f.read())
-    f.close()
-    m = MeCab.Tagger()
-
-    emojistr = ''
-    for line in sentences.split('。'):  # 1行ずつの処理
-        tokens = m.parse(line)
-        stack = []
-        for l in tokens.split('\n'):  # 1形態素ずつの処理
-            facestr = l.split('\t')[0]
-            if facestr == "EOS":
-                d = {}
-                for k in stack:
-                    d.update(dic[k])
-                if d:
-                    maxemoji = max(d.items(), key=lambda x: x[1])
-                    emojistr += line + maxemoji[0]
-                stack = []
-            elif '名詞' in l:
-                stack.append(facestr)
-    return emojistr + ' '
 
 
 if __name__ == '__main__':

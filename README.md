@@ -7,4 +7,4 @@ Tweet2Insta change your ordinary sentences to rich one. [YANS2018 Hackathon]
 + [flask](http://flask.pocoo.org/)
 
 ## Usage
-+ start `main.py` on web server
++ start `main.py` on web server. After running `main.py`, `localhost:8080` is a default address of this app. You can change the port number through a `--port` argument.
